@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> MÜŞTERİ YÖNETİMİ </div>
+        <div class="col-md-12 text-right " style="padding-right:0;margin-top:5px"> <a href="/admin/Customers/Insert" class="btn btn-primary" style="margin-bottom:10px;margin-right:0;">Yeni Müşteri Ekle</a> </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td> Adı Soyadı </td>
+                    <td>Eposta  </td>
+                    <td>Telefon</td>
+                    <td>Şifre</td>
+                    <td style="text-align:right">İşlem Yap</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.CustomerID</td>
+                    <td>@item.NSurname</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Password</td>
+                    <td>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Customers/Update?ID=@item.CustomerID" class=" btn badge-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Customers/Delete?ID=@item.CustomerID" class=" btn badge-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

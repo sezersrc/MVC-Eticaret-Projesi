@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Ayarlar";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> AYARLAR </div>
+        <div class="col-md-12 text-right " style="padding-right:0;margin-top:5px"> <a href="/admin/Settings/Insert" class="btn btn-primary" style="margin-bottom:10px;margin-right:0;">Yeni Kullanıcı Ekle</a> </div>
+        <table class="table table-bordered">
+            <thead>
+                
+                <tr>
+                    <td> Logo </td>
+                    <td> Firma Adı </td>
+                    <td>Telefon  </td>
+                    <td>Cep Telefon</td>
+                    <td>Vergi Dairesi </td>
+                    <td>Vergi NO</td>
+                    <td>Eposta</td>
+                    <td>Şehir</td>
+                    <td>İlçe</td>
+                    <td>Adres</td>
+                    <td>Şifre</td>
+                    <td style="text-align:right">İşlem Yap</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                
+                <tr>
+
+                    <td><img src="~/Logo/@item.Logo" width="150" /></td>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.CellPhone</td>
+                    <td>@item.VergiDairesi</td>
+                    <td>@item.VergiNO</td>
+                    <td>@item.Email</td>
+                    <td>@item.City</td>
+                    <td>@item.District</td>
+                    <td>@item.CompanyAdress</td>
+                    <td>@item.Password</td>
+                    <td>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Settings/Update?ID=@item.ID" class=" btn badge-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Settings/Delete?ID=@item.ID" class=" btn badge-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

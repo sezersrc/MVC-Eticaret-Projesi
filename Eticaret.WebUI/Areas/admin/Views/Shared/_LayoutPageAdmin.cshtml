@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Areas/admin/AContent/AdminCss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="Auto">
+            <div class="row">
+                <a href="/admin"> <img src="~/Logo/softek.png" width="150" /></a>                
+                <div class="col-md-12" style="height:100px;border-bottom:solid 0,3mm #dedede"></div>
+                <div class="col-md-2">
+                    <div class=" row">
+                        <ul class="menubar">
+                            <li><a href="/admin">Anasayfa</a></li>
+                            <li><a href="/admin/Products">Ürün Yönetimi</a></li>
+                            <li><a href="/admin/Categorys">Kategori Yönetimi</a></li>
+                            <li><a href="/admin/Orders">Sipariş Yönetimi</a></li>
+                            <li><a href="/admin/Customers">Müşteri Yönetimi</a></li>
+                            <li><a href="/admin/Settings">Ayarlar</a></li>
+                            <li><a href="#">Çıkış</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-md-10" style="margin-top:15px">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="col-md-12 Footer-LOGO ">
+                
+                <a href="http://modusoft.com.tr"> <img src="~/Logo/modusoft.png" width="150" /></a>   
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+
+   
+
+
+
+</html>

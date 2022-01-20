@@ -1,0 +1,36 @@
+.odemediv {
+    background-color: #f7f7f7;
+    border: solid 0.3mm #ebebeb
+}
+
+input[type="radio"] { display: none; }
+
+input[type="radio"]:not(:disabled) ~ label { cursor: pointer; }
+
+input[type="radio"]:disabled ~ label {
+    box-shadow: none;
+    color: #bcc2bf;
+}
+
+label {
+    border-right: solid 0.3mm #d9d9d9;
+    display: block;
+    margin: 0;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+
+input[type="radio"]:checked + label {
+    background: #04203b;
+    color: white;
+}
+
+p { font-weight: 900; }
+
+@media only screen and (max-width: 700px) {
+    section { flex-direction: column; }
+}

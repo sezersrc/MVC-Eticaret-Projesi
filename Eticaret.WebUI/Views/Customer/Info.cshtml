@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+<div id="content" class="site-content">
+
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="cont maincont">
+
+                <div class="section-top">
+
+                    <h1 class="maincont-ttl">HESABIM</h1>
+                    <ul class="b-crumbs">
+                        <li><a href="/">Anasayfa</a></li>
+                        <li>Hesabım Destek </li>
+                    </ul>
+                    
+                </div>
+
+                <!-- To make Sidebar "Not Sticky" just remove  id="section-list-withsb" -->
+                <div class="section-wrap-withsb">
+                    <aside class="blog-sb-widgets section-sb" id="section-sb">
+                        <div class="theiaStickySidebar">
+                            <div class="section-filter">
+                                <div class="section-filter">
+                                    <div class="blog-sb-widget multishopfeaturedproducts_widget">
+                                        <h3 class="widgettitle">Hesabım</h3>
+                                        <ul class="menu" style="list-style: none;">
+                                            <li><a href="#">Hesabım</a></li>
+                                            <li><a href="/Customer/Orders">Siparişlerim</a></li>
+                                            <li><a href="#">Taleplerim</a></li>
+                                            <li><a href="#">Adreslerim</a></li>
+                                            <li><a href="/Customer/Logout">Çıkış</a></li>
+
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </aside>        
+                    <div class="section-list-withsb" id="section-list-withsb">
+                        <div class="theiaStickySidebar">
+
+                            <div class="prod-litems section-list">
+                             
+                                <article class="prod-li sectls">
+                                  
+                                    @foreach (var item in Model)
+                                    {
+                                        <input type="text" class="form-control" name="NSurname" value="@item.NSurname" placeholder="Adınız Soyadınız:" required />
+                                        <input type="text" class="form-control" name="Email" value="@item.Email" placeholder="E-Mail: " required />
+                                        <input type="text" class="form-control" name="Phone" value="@item.Phone" placeholder="Telefon: " required />
+                                        <input type="password" class="form-control" name="Password" placeholder=" Eski Şifreniz: " required />
+                                        <input type="password" class="form-control" name="NewPassword" placeholder=" Yeni Şifreniz: " required />
+                                        <button type="submit" class="btn btn-danger form-control">Üyelik Bilgilerini Güncelle</button>
+                                        
+                                    }
+
+                                   
+
+                                </article>
+
+                                
+
+
+                            </div><!-- .theiaStickySidebar -->
+                    </div><!-- .section-list-withsb -->
+                </div><!-- .section-wrap-withsb -->
+
+            </div></div>
+        </main><!-- #main -->
+    </div><!-- #primary -->
+
+</div><!-- #content -->

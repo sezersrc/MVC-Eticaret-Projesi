@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+   
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/JSONAJAXSEPET.js"></script
+    
+    
+    <!--TEMA BASLANGIÇ-->
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900%7COpen+Sans:300,300i,400,400i,600,600i,700,700i&amp;subset=cyrillic" rel="stylesheet">
+
+    <link href="~/Content/tema1/html/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/ionicons.min.css" rel="stylesheet" />
+
+    <link href="~/Content/tema1/html/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/jquery.formstyler.css" rel="stylesheet" />
+
+    <link href="~/Content/tema1/html/css/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/jquery.mThumbnailScroller.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/chosen.css" rel="stylesheet" />
+
+    <link href="~/Content/tema1/html/css/style.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/elements.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/media.css" rel="stylesheet" />
+    <link href="~/Content/tema1/html/css/elements-media.css" rel="stylesheet" />
+
+    <script src="~/Content/tema1/html/js/jquery-plugins.js"></script>
+    <script src="~/Content/tema1/html/js/main.js"></script> 
+
+
+     <!--TEMA BİTİŞ-->
+
+
+
+</head>
+<body>
+
+    <div id="page" class="site">
+
+
+        <div class="container-fluid page-styling site-header-before">
+            <div class="row">
+                @foreach (var item in ViewBag.Data)
+                {
+                    if (@item.ID != null)
+                    {
+                        <div class="col-lg-3">
+                            <ul class="links_list links_list-align-left align-center-desktop topbar-social">
+                                <li>
+                                    <p class="links_list-value">
+                                        <a href="http://facebook.com/@item.Facebook" target="_blank" rel="nofollow">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="links_list-value">
+                                        <a href="mailto:@item.Email" target="_blank" rel="nofollow">
+                                            <i class="fa fa-paper-plane"></i>
+                                        </a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="links_list-value">
+                                        <a href="https://www.youtube.com/channel/@item.YouTube" target="_blank" rel="nofollow">
+                                            <i class="fa fa-youtube-play"></i>
+                                        </a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="links_list-value">
+                                        <a href="http://instagram.com/@item.Instagram" target="_blank" rel="nofollow">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-9">
+                            <ul class="links_list links_list-align-right align-center-desktop topbar-contacts">
+                                <li>
+                                    <p class="links_list-label">
+                                        Adres
+                                    </p>
+                                    <p class="links_list-value">
+                                        <a href="#" target="_blank" rel="nofollow"> @item.CompanyAdress</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="links_list-label">
+                                        Eposta
+                                    </p>
+                                    <p class="links_list-value">
+                                        <a href="mailto:@item.Email">@item.Email</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="links_list-label">
+                                        Telefon
+                                    </p>
+                                    <p class="links_list-value">
+                                        <a href="tel:@item.Phone">@item.Phone</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="links_list-label">
+                                        Cep
+                                    </p>
+                                    <p class="links_list-value">
+                                        <a href="tel:@item.CellPhone">@item.CellPhone</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+        <div class="site-header">
+
+        <p class="h-logo">
+            @foreach (var co in ViewBag.Data)
+            {
+                <a href="/"><img src="~/Logo/@co.Logo" alt="@co.Name"></a>
+            }
+
+        </p>
+
+            <!--
+    No Space
+    -->
+            <div class="h-shop">
+                
+                <form method="get" action="#" class="h-search" id="h-search">
+                    @using (Html.BeginForm())
+                    {
+                        <input type="text" placeholder="Ara..." @Html.Editor("ara")
+                        
+                        <button type="submit"><i class="ion-search"></i></button>
+                   
+                    }
+                </form>
+
+               
+                <ul class="h-shop-links">
+
+                    <li class="h-search-btn" id="h-search-btn">
+                        <i class="ion-search"></i>
+                    </li>
+                    <li class="h-shop-icon h-profile">
+                        <a href="/Customer/Info" title="Hesabım">
+                            <i class="ion-android-person"></i>
+                        </a>
+                        <ul class="h-profile-links">
+                            @if (HttpContext.Current.Request.Cookies["Customer"] == null)
+                            {
+                                <li><a href="/Customer">Giriş Yap / Kayıt Ol </a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/Customer/info">Hesabım</a></li>
+                            }
+
+
+                            <li><a href="/Basket">Sepet</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="h-cart" id="BasketRefresh">
+                        <a class="cart-contents" href="/Basket">
+                            @Html.Action("SepetAdetKontrol", "PartialView")
+                        </a>
+
+                    </li>
+
+                    <li class="h-menu-btn" id="h-menu-btn">
+                        <i class="ion-navicon"></i> Menü
+                    </li>
+                </ul>
+            </div>
+               <!--No Space-->
+            <div class="mainmenu">
+
+                <nav id="h-menu" class="h-menu">
+                    <ul>
+                        <li class="menu-item-has-children active">
+                            <a href="/">Anasayfa</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Katagoriler</a>
+                            @Html.Action("PartialMenu", "PartialPage")
+
+                        </li>
+
+                        <li class="menu-item-has-children">
+                            <a href="/Kampanyalar">Kampanyalar</a>
+
+                        </li>
+
+                        <li class="menu-item-has-children">
+                            <a href="#">HAKKIMIZDA</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="/iletisim">İletişim</a>
+                                </li>
+                                <li>
+                                    <a href="#">Şirket Profili</a>
+                                </li>
+                                <li>
+                                    <a href="#">Destek</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+            <!--No Space-->
+        </div>
+        <div >
+            
+                @RenderBody()
+            
+        </div>
+
+
+    </div>
+
+
+   
+
+
+</body>
+</html>

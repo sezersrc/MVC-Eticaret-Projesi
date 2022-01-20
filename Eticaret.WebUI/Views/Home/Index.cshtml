@@ -1,0 +1,127 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Eticaret.Entities
+@model PagedList.IPagedList<TBLProduct>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="modal fade" id="myModal" role="dialog" style="z-index:99999;">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sepet Güncelleme</h4>
+            </div>
+            <div class="modal-body" style="text-align:center" id="GelenCevap">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="content" class="site-content">
+
+    <div id="primary" class="content-area width-full">
+        <main id="main" class="site-main">
+            <div class="maincont page-styling page-full">
+                <div class="container mb60 page-styling row-wrap-container row-wrap-nottl">
+                    <p class="maincont-subttl">Özel Teklifler</p>
+                    <h2 class="mb35 heading-multishop">Ürünlerimiz</h2>
+                    <div class="row prod-items prod-items-3">
+                        @foreach (var item in Model)
+                        {
+                            <article class="cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4 sectgl-item">
+                                <div class="sectgl prod-i">
+                                    <div class="prod-i-top">
+                                        <a class="prod-i-img" href="/Details/Index/@item.ProductID">
+                                            <img src="~/images/@item.images" alt="">
+                                        </a>
+                                        <div class="prod-i-actions">
+                                            <div class="prod-i-actions-in">
+                                                <p class="prod-quickview">
+                                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Gözat</span></a>
+                                                </p>
+                                                <p class="prod-i-cart">
+                                                    @if (item.DiscountPrice != 0)
+                                                    {
+                                                        <a href="#" onclick="TempBasketInsert('@item.ProductID','@item.Name','@item.Price.ToString().Replace(",",".")','@item.DiscountPrice.ToString().Replace(",",".")','@item.images')"
+                                                           class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Sepete Ekle</span></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" onclick="TempBasketInsert('@item.ProductID','@item.Name','@item.Price.ToString().Replace(",",".")','0','@item.images')"
+                                                           class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Sepete Ekle</span></a>
+                                                    }
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="prod-i-bot">
+                                    <div class="prod-i-info">
+                                        <p class="prod-i-price">
+                                            @if (item.DiscountPrice != 0)
+                                            {
+                                                <div class="prod-i-price">
+                                                    <span><del>@item.Price.ToString("N") TL</del></span>
+
+                                                    <span>@item.DiscountPrice.ToString("N") TL</span>
+                                                </div>
+
+
+                                            }
+                                            else
+                                            {
+                                                <div class="prod-i-price">
+                                                    <span>@item.Price.ToString("N") TL</span>
+                                                </div>
+
+
+                                            }
+                                        </p>
+
+                                        <p class="prod-i-categ"><a>@item.ShortDetails</a></p>
+
+                                    </div>
+
+
+
+                                    <h3 class="prod-i-ttl"><a href="/Details/Index/@item.ProductID">@item.Name</a></h3>
+
+                                </div>
+
+                            </article>
+
+                        }
+
+                    </div>
+
+                </div>
+
+
+
+                <ul class="page-numbers">
+                    <li> @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))</li>
+                    
+                </ul>
+                
+
+            </div><!-- .maincont.page-styling.page-full -->
+        </main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- #content -->

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> KATAGORİ EKLEME </div>
+
+        <div class=" col-md-12">
+            @using (Html.BeginForm())
+            {
+                <div class="row" style="margin-bottom:15px;margin-top:15px">
+                    <input type="text" name="Name" class="form-control" placeholder="Kategori Adı: " />
+
+                </div>
+                
+                <div class="row" style="margin-bottom:15px;margin-top:15px">
+                    <input type="text" name="MenuOrder" class="form-control" placeholder="Kategori Sırası: " />
+                </div>
+
+                <div class="row" style="margin-bottom:15px;margin-top:15px">
+                    <select type="text" name="Status" class="form-control">
+                        <option value="True"> Kategoriyi Aktif Yap</option>
+                        <option value="False">Kategoriyi Pasif Yap</option>
+                    </select>
+                </div>
+
+                <div class="row" style="margin-bottom:15px;margin-top:15px">
+                    <button type="submit" class="form-control btn btn-primary"> KATEGORİYİ EKLE </button>
+                </div>
+                <div class="col-md-12" style="margin-top:25px;">
+                    @if (ViewBag.Data != null)
+                    {
+                        @Html.Raw(ViewBag.Data)
+                    }
+                </div>
+
+            }
+        </div>
+        
+    </div>
+</div>
+

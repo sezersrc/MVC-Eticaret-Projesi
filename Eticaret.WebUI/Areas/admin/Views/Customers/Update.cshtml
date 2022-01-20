@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> MÜŞTERİ GÜNCELLEME </div>
+
+        <div class=" col-md-12">
+            @using (Html.BeginForm())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="NSurname" value="@item.NSurname" class="form-control" placeholder=" Müşteri Adı: " />
+
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="Email" value="@item.Email" class="form-control" placeholder="Müşteri Eposta: " />
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="Phone" value="@item.Phone" class="form-control" placeholder="Müşteri Telefonu: " />
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="password" name="Password" value="@item.Password" class="form-control" placeholder="Şifre: " />
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <button type="submit" class="form-control btn btn-primary"> MÜŞTERİ GÜNCELLE </button>
+                    </div>
+
+                }
+
+
+
+                <div class="col-md-12" style="margin-top:25px;">
+
+
+                    @if (ViewBag.Data != null)
+                    {
+                        @Html.Raw(ViewBag.Data)
+                    }
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+

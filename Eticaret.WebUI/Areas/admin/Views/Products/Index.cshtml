@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Ürün Yönetimi";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> ÜRÜN YÖNETİMİ </div>
+        <div class="col-md-12 text-right " style="padding-right:0;margin-top:5px"> <a href="/admin/Products/Insert" class="btn btn-primary" style="margin-bottom:10px;margin-right:0;">Yeni Ürün Ekle</a> </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="text-align:center">ID</td>
+                    <td>Resim</td>
+                    <td>Ürün Adı</td>
+                    <td>Ürün Açıklaması</td>
+                    <td> Fiyatı </td>
+                    <td>İndirimli Fiyatı</td>
+                    <td>Stok</td>
+                    <td>Durumu</td>
+
+
+                    <td style="text-align:right">İşlem Yap</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td style="vertical-align: middle;text-align:center">@item.ProductID</td>
+                    <td style="padding:0;text-align:center;vertical-align:middle"><img src="~/images/@item.images" width="75" /></td>
+                    <td style="vertical-align: middle"> @item.Name</td>
+                    <td style="vertical-align: middle"> @item.Details</td>
+                    <td style="vertical-align: middle"> @item.Price TL</td>
+                    <td style="vertical-align: middle"> @item.DiscountPrice TL</td>
+                    <td style="vertical-align: middle"> @item.Stock </td>
+                    <td style="vertical-align: middle"> @item.Status </td>
+                    <td>
+
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Products/Update/@item.ProductID" class=" btn badge-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Products/Delete?ID=@item.ProductID" class=" btn badge-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

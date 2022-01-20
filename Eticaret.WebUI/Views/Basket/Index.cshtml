@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Basket";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+    decimal Toplam = 0;
+}
+
+<div id="content" class="site-content">
+
+    <div id="primary" class="content-area width-normal">
+        <main id="main" class="site-main">
+            <div class="cont maincont">
+                <h1 class="maincont-ttl">SEPETİM</h1>
+                <ul class="b-crumbs">
+                    <li><a href="/">ANASAYFA</a></li>
+                    <li>Sepet</li>
+                </ul>
+                <div class="page-styling">
+                    @if (HttpContext.Current.Request.Cookies["BasketCookiesID"] == null)
+                    {
+                        <div style="padding:35px;text-align:center;font-size:25px;width:100%;background-color: #fffafa ">SEPETİNİZDE ÜRÜN BULUNMAMAKTADIR..</div>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="woocommerce prod-litems section-list">
+                                <article class="prod-li sectls">
+                                    <div class="prod-li-inner">
+                                        <a href="/Details/Index/@item.ProductID" class="prod-li-img">
+                                            <img src="~/images/@item.images " <!--290x258 -->  alt="">
+                                        </a>
+                                        <div class="prod-li-cont">
+                                            <div class="prod-li-ttl-wrap">
+                                                <h3><a href="product.html">@item.Name</a></h3>
+                                            </div>
+                                            <!--
+                            No Space
+                            -->
+                                            <div class="prod-li-prices">
+                                                <div class="prod-li-price-wrap">
+                                                    <p>Fiyat</p>
+                                                    <p class="prod-li-price">
+
+                                                        @if (item.DiscountPrice == 0)
+                                                        {
+                                                            @Html.Raw(item.Price.ToString("N") + " TL");
+
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Raw(item.DiscountPrice.ToString("N") + " TL" + "<br><span style='text-decoration:line-through;color:darkred'>" + item.Price.ToString("N") + " TL</span>");
+
+                                                        }
+                                                    </p>
+                                                </div>
+                                                <div class="prod-li-qnt-wrap">
+                                                    <p class="qnt-wrap prod-li-qnt">
+                                                        <span style="cursor:pointer;" onclick="AdetIslem('@item.ProductID','-1')">-</span>
+                                                        @item.Piece
+                                                        <span style="cursor:pointer" onclick="AdetIslem('@item.ProductID','1')">+</span>
+                                                    </p>
+                                                </div>
+                                                <div class="prod-li-total-wrap">
+                                                    <p>Toplam</p>
+                                                    <p class="prod-li-total">
+                                                        @if (item.DiscountPrice == 0)
+                                                        {
+                                                            @Html.Raw((item.Price * item.Piece).ToString("N") + " TL");
+
+                                                            Toplam += item.Price * item.Piece;
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Raw((item.DiscountPrice * item.Piece).ToString("N") + " TL");
+
+                                                            Toplam += item.DiscountPrice * item.Piece;
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--
+                            No Space
+                            -->
+                                        </div>
+                                        <div class="prod-li-info">
+
+                                            
+                                            
+                                            <p class="prod-quickview">
+                                                <a href="/Details/Index/@item.ProductID" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Gözat</span></a>
+                                            </p>
+                                            
+                                            <p class="prod-li-information">
+                                                <a href="#" class="hover-label"><i class="icon ion-more"></i><span>Daha Fazla Bilgi Göster</span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="page-styling prod-li-informations">
+
+                                        <dl class="prod-li-props">
+                                            <dt>Weight:</dt>
+                                            <dd>1 kg</dd>
+                                            <dt>Dimensions:</dt>
+                                            <dd>4 x 50 cm</dd>
+                                            <dt>Сolor:</dt>
+                                            <dd><a href="#">Black</a>, <a href="#">Green</a></dd>
+                                            <dt>Manufacturer:</dt>
+                                            <dd><a href="#">Germany</a></dd>
+                                            <dt>Material:</dt>
+                                            <dd><a href="#">Metall</a></dd>
+                                        </dl>
+                                    </div>
+                                </article>
+
+                            </div>
+
+                        }
+
+                        <div class="cart-actions">
+                            <div class="coupon">
+                                <a href="/" class="checkout-button button">Alışverişe Devam Et</a>
+                            </div>
+                            <div class="cart-collaterals">
+                                <a href="/Payment" class="checkout-button button">Ödemeyi Yap</a>
+                                <div class="order-total">
+                                    <p class="cart-totals-ttl">Sepet Tutarı</p>
+                                    <p class="cart-totals-val">@((Toplam - (Toplam * 18 /100)).ToString("N")  + " TL")</p>
+                                    <p class="cart-totals-ttl">KDV</p>
+                                    <p class="cart-totals-val">@((Toplam * 18 /100).ToString("N")  + " TL")</p>
+                                    <p class="cart-totals-ttl">Kargo</p>
+                                    <p class="cart-totals-val">Ücretsiz</p>
+                                    <p class="cart-totals-ttl">Genel Toplam</p>
+                                    <p class="cart-totals-val">@Toplam.ToString("N") TL</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    }
+
+                </div>
+            </div>
+        </main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- #content -->

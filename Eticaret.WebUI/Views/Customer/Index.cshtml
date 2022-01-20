@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+
+
+<div id="content" class="site-content">
+    <div id="primary" class="content-area width-normal">
+        <main id="main" class="site-main">
+            <div class="cont maincont">
+                <h1 class="maincont-ttl">Giriş  /  Kayıt</h1>
+                <ul class="b-crumbs">
+                    <li><a href="/">Anasayfa</a></li>
+                    <li>Giriş & Kayıt İşlemleri</li>
+                </ul>                                               
+                <article class="page-cont">
+                    <div class="page-styling">
+
+
+                        <div class="auth-wrap">
+                            <div class="auth-col">
+                                <h2>Giriş</h2>
+                                @using (Html.BeginForm())
+                                {
+                                    <form method="post" class="login">
+                                        <p>
+                                            <label for="KullaniciAdi">E-posta <span class="required">*</span></label>
+                                            <input type="text" class="form-control" name="KullaniciAdi" />
+                                        </p>
+                                        <p>
+                                            <label for="KullaniciSifre">Şifreniz <span class="required">*</span></label>
+                                            <input type="password" class="form-control" name="KullaniciSifre"  />
+                                        </p>
+                                        <p class="auth-submit">
+                                            <input type="submit" value="Giriş">
+                                            <input type="checkbox" id="rememberme" value="forever">
+                                            <label for="rememberme">Beni Hatırla</label>
+                                        </p>
+                                        <p class="auth-lost_password">
+                                            <a href="#">Şifremi Unuttum</a>
+                                        </p>
+                                        
+                                        @using (Html.BeginForm("Uyeliksiz", "Customer", FormMethod.Post))
+                                        {
+                                            <div>
+                                                <button type="submit" class="btn btn-dark form-control">Üyeliksiz Devam Et</button>
+                                            </div>
+                                        }
+                                    </form>
+                                }
+                            </div>
+                            <div class="auth-col">
+                                <h2>Kayıt</h2>
+                                @using (Html.BeginForm("Register","Customer",FormMethod.Post))
+                                {
+                                    <form method="post" class="register">
+                                        <p> 
+                                            <label for="NSurname">Adınız Soyadınız <span class="required">*</span></label>
+                                            <input type="text" class="form-control" name="NSurname"  required />
+                                        </p>
+                                        <p>
+                                            <label for="reg_email">E-posta <span class="required">*</span></label>
+                                            <input type="text" class="form-control" name="Email"  required />
+                                        </p>
+                                        <p> 
+                                            <label for="Phone">Telefon <span class="required">*</span></label>
+                                            <input type="text" class="form-control" name="Phone"  required />
+                                        </p>
+                                        <p>
+                                            <label for="reg_password">Şifreniz <span class="required">*</span></label>
+                                            <input type="password" id="reg_password">
+                                        </p>
+                                        <p class="auth-submit">
+                                            <input type="submit" value="Kayıtol">
+                                        </p>
+                                    </form>
+                                    if (TempData["Error"] != null)
+                                    {
+                                        <div class="alert alert-danger" style="margin-top:15px;text-align:center">
+
+
+                                            @Html.Raw(TempData["Error"])
+
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+
+                    </div>
+                </article>
+            </div>
+        </main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- #content -->

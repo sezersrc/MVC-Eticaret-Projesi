@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+    
+
+}
+
+
+<div id="content" class="site-content">
+    @foreach (var d in ViewBag.Data2)
+    {
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <div class="cont maincont">
+                    <ul class="b-crumbs">
+                        <li><a href="/">Anasayfa</a></li>
+
+                        <li>@d.Name</li>
+                    </ul>
+                    
+                    <article>
+                        <div class="prod">
+                            <div class="prod-slider-wrap prod-slider-shown">
+                                <div class="flexslider prod-slider" id="prod-slider">
+                                    <ul class="slides">
+                                        <li>
+                                            <a data-fancybox-group="prod" class="fancy-img" href="~/images/@d.images">
+                                                <img src="~/images/@d.images" alt="">
+                                                
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <div class="prod-slider-count"><p><span class="count-cur">1</span> / <span class="count-all">2</span></p><p class="hover-label prod-slider-zoom"><i class="icon ion-search"></i><span>Zoom In</span></p></div>
+                                </div>
+                                <div class="flexslider prod-thumbs" id="prod-thumbs">
+                                    <ul class="slides">
+                                        <li>
+                                            
+                                            <img src="~/images/@d.images" alt="" height="550">
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                              <div class="prod-cont">
+                                <p class="prod-categs">
+                                    <a>
+                                        @foreach (var item in Model)
+                                        {
+                                            if (d.CategoryID == item.CategoryID)
+                                            {
+                                                <a value="@item.CategoryID">@item.Name</a>
+
+                                            }
+
+                                        }
+                                    </a>,
+                                </p>
+                                <h1>@d.Name</h1>
+                                <div class="variations_form cart">
+                                    <p class="prod-price">
+
+
+
+                                        @if (d.DiscountPrice != 0)
+                                        {
+                                            <a> <del>@d.Price TL</del> </a>
+                                            <a>@d.DiscountPrice TL</a>
+
+                                        }
+                                        else
+                                        {
+
+                                            <a>@d.Price TL</a>
+                                        }
+
+                                    </p>
+
+                                    <p class="prod-excerpt">@d.ShortDetails <a id="prod-showdesc" class="prod-excerpt-more" href="#prod-tab-1">Devamını Oku</a></p>
+                                    <div class="prod-add">
+
+                                        <button type="submit" class="button">
+
+                                            @if (d.DiscountPrice != 0)
+                                            {
+                                                <a href="#" onclick="TempBasketInsert('@d.ProductID', '@d.Name', '@d.Price.ToString().Replace(",", ".")', '@d.DiscountPrice.ToString().Replace(",", ".")', '@d.images')"
+                                                   class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i>Sepete Ekle</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" onclick="TempBasketInsert('@d.ProductID', '@d.Name', '@d.Price.ToString().Replace(",", ".")', '0', '@d.images')"
+                                                   class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i>Sepete Ekle</a>
+                                            }
+                                        </button>
+
+
+
+                                        <p class="qnt-wrap prod-li-qnt">
+                                            <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
+                                            <input type="text" value="1">
+                                            <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                                <div class="prod-props">
+                                    <dl class="product_meta">
+                                        <dt>Ürün Kodu:</dt>
+                                        <dd>@d.ProductID</dd>
+                                        <dt>Marka:</dt>
+                                        <dd><a href="#">Hugo Boss</a></dd>
+                                        <dt>Ölçü</dt>
+                                        <dd>1 kg</dd>
+                                        <dt>Ebatlar</dt>
+                                        <dd>4 x 50 cm</dd>
+                                        <dt>Renk</dt>
+                                        <dd>Blue, Green</dd>
+                                        <dt>Üretim Yeri</dt>
+                                        <dd>Germany</dd>
+                                        <dt>İçerik</dt>
+                                        <dd>Metal, </dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="prod-tabs-wrap">
+                            <ul class="prod-tabs">
+                                <li id="prod-desc" class="active" data-prodtab-num="1">
+                                    <a data-prodtab="#prod-tab-1" href="#">Açıklama</a>
+                                </li>
+                                <li data-prodtab-num="2" id="prod-props">
+                                    <a data-prodtab="#prod-tab-2" href="#">Ek Bilgi</a>
+                                </li>
+
+                            </ul>
+                            <div class="prod-tab-cont">
+                                <p data-prodtab-num="1" class="prod-tab-mob active" data-prodtab="#prod-tab-1">Açıklama</p>
+                                <div class="prod-tab page-styling prod-tab-desc" id="prod-tab-1">
+                                    <p>@d.Details</p>
+                                </div>
+                                <p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">Ek Bilgi</p>
+                                <div class="prod-tab" id="prod-tab-2">
+                                    <dl class="prod-tab-props">
+                                        <dt>Weight</dt>
+                                        <dd>1 kg</dd>
+                                        <dt>Dimensions</dt>
+                                        <dd>4 x 50 cm</dd>
+                                        <dt>Сolor</dt>
+                                        <dd><p><a href="#">Blue</a>, <a href="#">Green</a></p></dd>
+                                        <dt>Manufacturer</dt>
+                                        <dd><p><a href="#">Germany</a></p></dd>
+                                        <dt>Material</dt>
+                                        <dd><p><a href="#">Metall</a>, <a href="#">Plastic</a></p></dd>
+                                    </dl>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </article>
+                </div>
+            </main><!-- #main -->
+        </div>
+    }
+    <!-- #primary -->
+    <!-- Elements -->
+    <div class="content-area width-full">
+        <div class="maincont page-styling page-full">
+
+
+            <div class="container mb20 page-styling row-wrap-container row-wrap-nottl">
+                <div class="row">
+                    <div class="cf-lg-4 col-sm-4">
+                        <div class="iconbox-item iconbox-i-3">
+                            <div class="iconbox-i-top">
+                                <p class="iconbox-i-img">
+                                    <i class="fa fa-road"></i>
+                                </p>
+                                <h3>Financing Services</h3>
+                            </div>
+                            <p>Vestibulum eu odio vitae neque blandit consequat ut nec nisi. Maecenas et velit sem. Nam egestas lectus vel fringilla accumsan.</p>
+                        </div>
+                    </div>
+                    <div class="cf-lg-4 col-sm-4">
+                        <div class="iconbox-item iconbox-i-3">
+                            <div class="iconbox-i-top">
+                                <p class="iconbox-i-img">
+                                    <i class="fa fa-truck"></i>
+                                </p>
+                                <h3>Lead Qualification</h3>
+                            </div>
+                            <p>Aliquam fermentum tortor lacus, id dictum tellus feugiat non. Donec rutrum ligula sed dui lobortis, id scelerisque sem volutpat.</p>
+                        </div>
+                    </div>
+                    <div class="cf-lg-4 col-sm-4">
+                        <div class="iconbox-item iconbox-i-3">
+                            <div class="iconbox-i-top">
+                                <p class="iconbox-i-img">
+                                    <i class="fa fa-shield"></i>
+                                </p>
+                                <h3>Security Service</h3>
+                            </div>
+                            <p>Etiam iaculis urna metus, in volutpat dolor faucibus at. Nulla vitae aliquet justo. Aenean in iaculis sapien. Vivamus rutrum hendrerit egestas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div><!-- #content -->

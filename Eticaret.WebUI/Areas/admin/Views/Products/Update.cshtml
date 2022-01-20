@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> ÜRÜN GÜNCELLEME </div>
+
+        <div class=" col-md-12">
+            @using (Html.BeginForm("Update", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+                foreach (var u in ViewBag.Data)
+                {
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px;text-align:center">
+                        <img src="~/images/@u.images" width="150" />
+
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="file" name="Upload" class="form-control" placeholder="Ürün Resmi: " />
+
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block"> Ürün Adı </span>
+                        <input type="text" value="@u.Name" name="Name" class="form-control" placeholder="Ürün Adı: " />
+
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block"> Ürün Açıklaması </span>
+                        <input type="text" value="@u.Details" name="Details" class="form-control" placeholder="Ürün Açıklaması: " />
+
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block"> Ürün Kategorisi </span>
+                        <select type="text" name="CategoryID" class="form-control">
+
+                            @foreach (var item in Model)
+                            {
+                                if (u.CategoryID == item.CategoryID)
+                                {
+                                    <option value="@item.CategoryID">@item.Name</option>
+                                }
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                if (u.CategoryID != item.CategoryID)
+                                {
+                                    <option value="@item.CategoryID">@item.Name</option>
+                                }
+                            }
+
+
+                        </select>
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block">Satış Fiyatı</span>
+                        <input type="text" value="@u.Price" name="Price" class="form-control" placeholder="Satış Fiyatı: " />
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block"> İndirimli Satış Fiyatı</span>
+                        <input type="text" value="@u.DiscountPrice" name="DiscountPrice" class="form-control" placeholder=" İndirimli Satış Fiyatı: " />
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block"> Ürün Stok Adedi </span>
+                        <input type="text" value="@u.Stock" name="Stock" class="form-control" placeholder=" Ürün Stok Adedi : " />
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <span style="padding:5px;display:block"> Ürün Durumu </span>
+                        <select type="text" name="Status" class="form-control">
+                            @if (u.Status == true)
+                            {
+                                <option value="True"> Ürünü Aktif Yap</option>
+                                <option value="False">Ürünü Pasif Yap</option>
+                            }
+                            else
+                            {
+                                <option value="False">Ürünü Pasif Yap</option>
+                                <option value="True"> Ürünü Aktif Yap</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <button type="submit" class="form-control btn btn-primary"> Ürünü Güncelle  </button>
+                    </div>
+
+                }
+
+
+                <div class="col-md-12" style="margin-top:25px;">
+                    @if (ViewBag.Data != null)
+                    {
+                        @Html.Raw(ViewBag.Mesaj)
+                    }
+                </div>
+
+
+
+            }
+        </div>
+
+    </div>
+</div>
+

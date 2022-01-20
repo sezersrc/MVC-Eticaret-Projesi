@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Ayarları Güncelleme";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> AYAR GÜNCELLEME </div>
+
+        <div class=" col-md-12">
+            @using (Html.BeginForm("Update", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                foreach (var item in Model)
+                {
+                    <div class="row" style="margin-bottom:15px;margin-top:15px;text-align:center">
+                        <img src="~/Logo/@item.Logo" width="150" />
+
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="file" name="Upload" class="form-control" placeholder="Logo: " />
+
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="Name" value="@item.Name" class="form-control" placeholder=" Firma Adı: " />
+
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="Phone" value="@item.Phone" class="form-control" placeholder="Telefonu: " />
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="CellPhone" value="@item.CellPhone" class="form-control" placeholder=" Cep Telefonu: " />
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="VergiDairesi" value="@item.VergiDairesi" class="form-control" placeholder=" Vergi Dairesi : " />
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="VergiNO" value="@item.VergiNO" class="form-control" placeholder=" Vergi NO : " />
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="Email" value="@item.Email" class="form-control" placeholder=" E-Posta : " />
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="City" value="@item.City" class="form-control" placeholder=" Şehir : " />
+                    </div>
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="District" value="@item.District" class="form-control" placeholder=" İlçe : " />
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="text" name="CompanyAdress" value="@item.CompanyAdress" class="form-control" placeholder=" Adres : " />
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <input type="password" name="Password" value="@item.Password" class="form-control" placeholder="Şifre: " />
+                    </div>
+
+
+                    <div class="row" style="margin-bottom:15px;margin-top:15px">
+                        <button type="submit" class="form-control btn btn-primary"> AYARLARI GÜNCELLE </button>
+                    </div>
+
+                }
+
+
+
+                <div class="col-md-12" style="margin-top:25px;">
+
+
+                    @if (ViewBag.Data != null)
+                    {
+                        @Html.Raw(ViewBag.Data)
+                    }
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+

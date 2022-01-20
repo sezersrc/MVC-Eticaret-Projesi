@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+    decimal Toplam = 0;
+}
+
+
+<!--MEVCUT-->
+
+
+<div id="content" class="site-content">
+
+    <div  class="content-area width-full">
+        <main id="main" class="site-main">
+            <div class="cont maincont">
+                <h1 class="maincont-ttl">Ödeme</h1>
+                <ul class="b-crumbs">
+                    <li><a href="/">Anasayfa</a></li>
+                    <li>Ödeme Detayları</li>
+                </ul>
+
+                @using (Html.BeginForm())
+                {
+                    <div class="col-md-12 ProductDiv">
+                        <div class="row">
+
+                            <div style="float: left; padding: 15px; width: 70%;">
+                                <div style="background-color: #0b3b68; color: white; padding: 10px; text-align: center;">ADRES BİLGİLERİ</div>
+                                <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px; text-align: center;">
+                                    <div class="row">
+                                        <input type="text" class="form-control" name="NameSurName" placeholder="Adınız Soydınız" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px; text-align: center;">
+                                    <div class="row">
+                                        <input type="text" class="form-control" name="Phone" placeholder="Telefon Numaranız" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px; text-align: center;">
+                                    <div class="row">
+                                        <input type="text" class="form-control" name="City" placeholder="Şehir" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px; text-align: center;">
+                                    <div class="row">
+                                        <input type="text" class="form-control" name="District" placeholder="İlçe" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px; text-align: center;">
+                                    <div class="row">
+                                        <textarea type="text" class="form-control" name="FullAddress" placeholder="Tam Adresiniz" style="height: 150px;"></textarea>
+                                    </div>
+                                </div>
+
+                                <div style="background-color: #0b3b68; color: white; padding: 10px; text-align: center;">ÖDEME YÖNTEMLERİ</div>
+
+                                <link rel="stylesheet" href="/RadioButton/css/style.css">
+
+                                <div class="col-md-12 odemediv" style="margin-bottom: 10px; margin-top: 10px;">
+                                    <div class="row">
+                                        <div>
+                                            <input type="radio" id="control_01" name="OdemeYontemi" value="Kapıda Ödeme" checked>
+                                            <label for="control_01">
+                                                Kapıda Ödeme
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="control_02" name="OdemeYontemi" value="Havale İle Ödeme">
+                                            <label for="control_02">
+                                                Havale ile Ödeme
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="control_03" name="OdemeYontemi" value="Kredi Kartı İle Ödeme">
+                                            <label for="control_03">
+                                                Kredi Kartı İle Ödeme
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#control_01").click(function () {
+                                            $(".KapidaOdeme").fadeToggle();
+                                            $(".Havale").hide();
+                                            $(".KrediKarti").hide();
+                                        });
+                                        $("#control_02").click(function () {
+                                            $(".KapidaOdeme").hide();
+                                            $(".Havale").fadeToggle();
+                                            $(".KrediKarti").hide();
+                                        });
+                                        $("#control_03").click(function () {
+                                            $(".KapidaOdeme").hide();
+                                            $(".Havale").hide();
+                                            $(".KrediKarti").fadeToggle();
+                                        });
+                                    });
+                                </script>
+                                <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px; text-align: center;">
+                                    <div class="row">
+
+                                        <div class="KapidaOdeme" style="border: solid 0.3mm #ededed; padding: 10px; text-align: left;">
+                                            <p style="font-weight: normal;">Kapıda Ödeme Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stoicos roga. Iam id ipsum absurdum, maximum malum neglegi. Duo Reges: constructio interrete. Suo enim quisque studio maxime ducitur. Qui autem esse poteris, nisi te amor ipse ceperit? Scisse enim te quis coarguere possit?</p>
+                                        </div>
+
+                                        <div class="Havale" style="border: solid 0.3mm #ededed; display: none; font-weight: normal; padding: 10px; text-align: left;">
+                                            <p style="font-weight: normal;">Havale ile Ödeme Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stoicos roga. Iam id ipsum absurdum, maximum malum neglegi. Duo Reges: constructio interrete. Suo enim quisque studio maxime ducitur. Qui autem esse poteris, nisi te amor ipse ceperit? Scisse enim te quis coarguere possit?</p>
+                                        </div>
+
+                                        <div class="KrediKarti" style="border: solid 0.3mm #ededed; display: none; font-weight: normal; padding: 10px; text-align: left;">
+                                            <p style="font-weight: normal;">Kredi Kartı İle Ödeme Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stoicos roga. Iam id ipsum absurdum, maximum malum neglegi. Duo Reges: constructio interrete. Suo enim quisque studio maxime ducitur. Qui autem esse poteris, nisi te amor ipse ceperit? Scisse enim te quis coarguere possit?</p>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="float: right; padding: 15px; width: 30%;">
+
+                                <div style="background-color: #0b3b68; color: white; padding: 10px; text-align: center;">SEPETTEKİ ÜRÜNLER</div>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td colspan="2" style="vertical-align: middle;text-align:center;background-color:#eaeaea">@item.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Birim Fiyat :</td>
+                                                <td style="vertical-align: middle;text-align: center">
+                                                    @if (item.DiscountPrice == 0)
+                                                    {
+                                                        @Html.Raw(item.Price.ToString("N") + " TL");
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(item.DiscountPrice.ToString("N") + " TL");
+                                                    }
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Adet :</td>
+                                                <td style="vertical-align: middle;text-align: center">@item.Piece </td>
+                                            </tr>
+                                            if (item.DiscountPrice == 0)
+                                            {
+                                                Toplam += item.Price * item.Piece;
+                                            }
+                                            else
+                                            {
+                                                Toplam += item.DiscountPrice * item.Piece;
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                                <div style="background-color: #0b3b68; color: white; padding: 10px; text-align: center;">SEPET TOPLAMI</div>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>Sepet Tutarı</td>
+                                            <td style="text-align: center"> @((Toplam - Toplam * 18 / 100).ToString("N") + " TL")</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kdv (%18)</td>
+                                            <td style="text-align: center">@((Toplam * 18 / 100).ToString("N") + " TL")</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kargo</td>
+                                            <td style="text-align: center">Ücretsiz</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Toplam</td>
+                                            <td style="text-align: center">@Toplam.ToString("N") TL</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <button type="submit" style="text-align: center" class="btn btn-dark form-control">Sipariş Tamamla</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- #content -->
+<!--MEVCUT--><!--MEVCUT-->

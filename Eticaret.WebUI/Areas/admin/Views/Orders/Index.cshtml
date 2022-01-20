@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Sipariş Yönetimi";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12 Baslik "> SİPARİŞ YÖNETİMİ </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="text-align:center">Sipariş NO</td>
+                    <td style="text-align:center">Müşteri Adı</td>
+
+                    <td style="text-align:center">Sipariş Tarihi</td>
+                    <td style="text-align:center">Ödeme tipi</td>
+                    <td style="text-align:center">Durumu</td>
+                    <td style="text-align:center">Toplam</td>
+                    <td>Detay</td>
+                    <td>İşlem</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td style="text-align:center">@item.OrderID</td>
+                    <td style="text-align:center">
+                        @foreach (var c in ViewBag.Data)
+                        {
+                            if (c.OrderID == item.OrderID)
+                            {
+                                @c.NameSurName
+                            }
+
+                        }
+
+
+                    </td>
+
+                    <td style="text-align:center">@item.PaymentTime.ToString("dd.mm.yyy - HH:ss")</td>
+                    <td style="text-align:center">@item.PaymentType</td>
+                    <td style="text-align:center">@item.OrderStatus</td>
+                    <td style="text-align:center">@item.TotalPrice.ToString("N")  TL</td>
+                    
+                    <td><a style="padding:0;vertical-align:middle;text-align:center" href="#" class=" btn badge-primary">Detay</a></td>
+                    <td>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="#" class=" btn badge-primary"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Orders/Update/@item.OrderID" class=" btn badge-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a style="padding:0;vertical-align:middle;text-align:right" href="/admin/Orders/Delete?ID=@item.OrderID" class=" btn badge-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

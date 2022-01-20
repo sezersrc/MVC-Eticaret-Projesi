@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+
+
+<div class="col-md-12">
+    @foreach (var co in ViewBag.Data)
+    {
+    <div class="Info">
+        <div> @co.Name</div>
+        <div> @co.Phone  --  @co.CellPhone</div>
+        <div> @co.Email </div>
+        <div> @co.CompanyAdress</div>
+
+        <div> @co.District   / @co.City</div>
+
+      
+
+    </div>
+
+
+
+
+
+    }
+
+</div>
+
